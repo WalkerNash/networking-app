@@ -1,0 +1,2 @@
+module SixHelper
+end
