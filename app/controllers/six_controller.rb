@@ -1,2 +1,0 @@
-class SixController < ApplicationController
-end
