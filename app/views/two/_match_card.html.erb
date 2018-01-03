@@ -1,0 +1,23 @@
+<div id='match-card'>
+  <% puts user.given_name %>
+  <%= image_tag user.avatar.url(:medium) %>
+
+  <%= content_tag :div, class: 'match-card-user-info' do -%>
+  <%= content_tag :h3 do -%>
+  <%= user.given_name %>
+<% end -%>
+<%= content_tag :h5 do -%>
+<%= user.profession %>
+<% end -%>
+<%= content_tag :h5 do -%>
+<%= user.bio_short %>
+<% end -%>
+<% end -%>
+
+<%= form_for :relationship, url: relationships_path, html: { method: :post }, remote: true do |f| %>
+<%= f.hidden_field :invited_id, value: user.id %>
+<%= content_tag :div, class: 'yes-btn' do -%>
+<%= f.submit 'Accept', class: 'btn btn-primary' %>
+<% end -%>
+<% end %>
+</div>

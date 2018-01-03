@@ -1,0 +1,37 @@
+<%= link_to "Back to Matching", root_path %>
+<%= link_to "Edit Profile", edit_user_registration_path %>
+
+<div class="convo_match_queue">
+  <h3>Match Queue</h3>
+
+  <div class="convo_pending_match_thumbs">
+    <% # Render stuff here %>
+    <% #=image_tag @inviter.avatar.url(:thumb) %>
+  </div>
+
+  <h3>Conversations</h3>
+</div>
+
+<div class="convo_list">
+  <% if @received_invites.any? %>
+    <% @received_invites.each do |i| %>
+    <% @id = i.inviting_id %>
+    <% @inviter = User.find_by_id(@id) %>
+    <%= image_tag @inviter.avatar.url(:thumb) %>
+    <% @relationship = Relationship.find_by_inviting_id_and_invited_id(@inviter.id, current_user.id ) %>
+    <%= link_to @inviter.given_name, relationship_conversations_path(id: @inviter.id, relationship_id: @relationship.id), method: 'post'%>
+    <% #= convo.last %>
+    <% end %>
+  <% end %>
+
+  <% if @sent_invites.any? %>
+    <% @sent_invites.each do |i| %>
+    <% @id2 = i.invited_id %>
+    <% @invitee = User.find_by_id(@id2) %>
+    <%= image_tag @invitee.avatar.url(:thumb) %>
+    <% @relationship = Relationship.find_by_inviting_id_and_invited_id(current_user.id, @invitee.id ) %>
+    <%= link_to @invitee.given_name, relationship_conversations_path(id: @invitee.id, relationship_id: @relationship.id), method: 'post'%>
+    <% #= convo.last %>
+    <% end %>
+  <% end %>
+</div>

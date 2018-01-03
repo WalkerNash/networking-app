@@ -1,0 +1,7 @@
+<h3><%= @user.given_name %></h3>
+<%= link_to "Back to Your Conversation", convo_view_path %>
+<% if current_user %>
+  <% @relationship = current_user.sent_invites.where(invited_id: @user.id).first %>
+  <%= link_to "Unmatch", @relationship, method: :delete %>
+  <% end %>
+<% end %>

@@ -18,8 +18,54 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.text_field :password_confirmation  %>
   </div>
+<br />
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :given_name  %>
+  </div>
+
+  <div class="field">
+    <p>Last Name</p>
+    <%= f.text_field :family_name  %>
+  </div>
+
+    <div class="field">
+      <p>Age</p>
+      <%= f.collection_select :age, User::AGES, :to_i, :to_i %>
+    </div>
+
+  <div class="field">
+    <p>Gender - Letters Only!</p>
+    <%= f.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <p>Profession</p>
+    <%= f.collection_select :profession, User::PROFESSIONS, :to_s, :to_s %>
+  </div>
+
+  <div class='field'>
+    <p>Location</p>
+    <%= f.collection_select :location, User::LOCATIONS, :to_s, :to_s %>
+  </div>
+
+  <div class="field">
+    <p>This will be the headline that gets people to pay attention to you. What are you doing? What makes you unique?</p>
+    <%= f.text_area :bio_short, :maxlength => 120, :size => '40x3' %>
+  </div>
+
+  <div class="field">
+    <p>Tell us a little bit more about yourself for the next step.</p>
+    <%= f.text_area :bio_long, :size => '60x10' %>
+  </div>
+
+  <div class='field'>
+    <p>Upload a photo of yourself to start things off. You have to give us at least one, and you can add up to three more later.</p>
+    <%= f.file_field :avatar %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

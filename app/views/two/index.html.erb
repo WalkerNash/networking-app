@@ -1,0 +1,17 @@
+<%= link_to "Your Conversations", relationships_path %>
+<%= link_to "Edit Profile", edit_user_registration_path %>
+
+<% x =  false %>
+  <% while x == false %>
+    <% @users.each do |u| %>
+    <%= puts current_user.given_name %>
+      <% @relationship = current_user.sent_invites.where(invited_id: u.id) %>
+        <% if @relationship %>
+          <% puts u.given_name %>
+            <%= render partial: "match_card", locals: {user: u} %>
+          <% end %>
+        <% end %>
+        <% x = true %>
+        <% end %>
+
+        <button type="button," name='Reject'>
