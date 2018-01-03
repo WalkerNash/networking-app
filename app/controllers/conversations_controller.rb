@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   def show
     @relationship = Relationship.find(params[:relationship_id])
     @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages.all
+    @messages = @conversation.messages
   if @messages.length > 10
    @over_ten = true
    @messages = @messages[-10..-1]
@@ -17,6 +17,8 @@ class ConversationsController < ApplicationController
    @messages.last.read = true;
   end
   end
+  @message = @conversation.messages.new
+
 end
 
 def new
