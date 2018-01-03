@@ -1,13 +1,9 @@
 class ConversationsController < ApplicationController
 
-
-
-
-
   def show
     @relationship = Relationship.find(params[:relationship_id])
     @conversation = Conversation.find(params[:id])
-    @messages = @conversation.messages
+    @messages = @conversation.messages.all
   if @messages.length > 10
    @over_ten = true
    @messages = @messages[-10..-1]
@@ -21,7 +17,6 @@ class ConversationsController < ApplicationController
    @messages.last.read = true;
   end
   end
-  @message = @conversation.messages.new
 end
 
 def new
@@ -34,4 +29,11 @@ end
     redirect_to relationship_conversation_path(@relationship.id, @conversation.id)
   end
 
+end
+
+private
+
+
+def conversation_params
+ params.require(:conversation).permit(:body, :relationship_id, :conversation_id, :id)
 end

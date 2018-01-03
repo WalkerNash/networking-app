@@ -8,26 +8,18 @@ class MessagesController < ApplicationController
 
   end
 
-
-@conversation = Conversation.find(params[:id])
-binding.pry
-@message = @conversation.messages.new
- end
-
 def new
  @message = @conversation.messages.new
 end
 
 def create
 @conversation = Conversation.find(params[:conversation_id])
- @message = @conversation.messages.new(message_params)
- if @message.save
-  redirect_to relationship_conversation_path(@conversation)
- end
+ @message = @conversation.messages.create(message_params)
+  redirect_to relationship_conversation_path(id: @conversation.id)
+
+end
 end
 
-private
-
  def message_params
-  params.require(:message).permit(:body, :user_id)
+  params.require(:message).permit(:body, :user_id, :conversation_id, :id, :created_at, :updated_at)
  end
