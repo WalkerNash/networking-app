@@ -38,7 +38,7 @@ import android.webkit.WebViewClient;
         wv.getSettings().setAppCacheEnabled(true);
         wv.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         // Load URL
-        wv.loadUrl("https://www.okcupid.com");
+        wv.loadUrl("https://coffee-brk-2.herokuapp.com");
         wv.setWebViewClient(new WebViewClient());
 
     }
